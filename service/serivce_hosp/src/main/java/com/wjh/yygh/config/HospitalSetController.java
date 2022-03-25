@@ -2,6 +2,7 @@ package com.wjh.yygh.config;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wjh.yygh.common.exception.YyghException;
 import com.wjh.yygh.common.result.Result;
 import com.wjh.yygh.model.hosp.HospitalSet;
 import com.wjh.yygh.service.HospitalSetService;
@@ -95,6 +96,7 @@ public class HospitalSetController {
     @ApiOperation(value = "5 根据id获取医院设置")
     @GetMapping("/getHospSet/{id}")
     public Result getHospSet(@PathVariable Long id) {
+
         HospitalSet hospitalSet = hospitalSetService.getById(id);
         return Result.ok(hospitalSet);
     }
@@ -118,6 +120,35 @@ public class HospitalSetController {
         hospitalSetService.removeByIds(idList);
         return Result.ok();
     }
+
+//    8.医院设置锁定和解锁
+    @ApiOperation(value = "8.医院设置锁定和解锁")
+    @PutMapping("/lockHospitalSet/{id}/{status}")
+    public Result lockHospitalSet(@PathVariable("id") Long id
+                ,@PathVariable("status") Integer status){
+
+        //根据id查询医院设置信息
+        HospitalSet byId = hospitalSetService.getById(id);
+//        设置状态信息
+        byId.setStatus(status);
+//        调用方法
+        hospitalSetService.updateById(byId);
+        return Result.ok();
+    }
+
+    //9.发送签名秘钥
+    @ApiOperation(value = "9.发送签名秘钥")
+    @PutMapping("/sendKey/{id}")
+    public Result sendKey(@PathVariable("id") Long id){
+        HospitalSet byId = hospitalSetService.getById(id);
+        String signKey = byId.getSignKey();
+        String hoscode = byId.getHoscode();
+        //TODO 发送短信
+        return Result.ok();
+
+    }
+
+
 
 
 }

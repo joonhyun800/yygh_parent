@@ -12,6 +12,7 @@
     <modules>
         <module>service_user</module>
         <module>serivce_hosp</module>
+        <module>service_cmn</module>
     </modules>
 
     <artifactId>service</artifactId>
