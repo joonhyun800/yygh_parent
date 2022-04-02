@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @SpringBootTest
 @Slf4j
@@ -20,5 +23,13 @@ public class DataSourceTest {
         System.out.println(dataSource.getConnection());
     }
 
+    @Test
+    public void test(){
+
+        HashMap<String, String []> hashMap = new HashMap<>();
+
+        hashMap.entrySet();
+
+    }
 
 }

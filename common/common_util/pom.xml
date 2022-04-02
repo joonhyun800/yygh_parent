@@ -13,7 +13,7 @@
     <artifactId>common_util</artifactId>
     <groupId>com.wjh</groupId>
     <version>1.0</version>
-    
+
     <name>common-util</name>
     <description>common-util</description>
 
@@ -51,10 +51,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-
-
-
 
 
 </project>

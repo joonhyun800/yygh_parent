@@ -13,14 +13,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Result error(Exception e){
+    public Result error(Exception e) {
         e.printStackTrace();
         return Result.fail();
     }
 
     @ExceptionHandler(YyghException.class)
     @ResponseBody
-    public Result yygherror(Exception e){
+    public Result yygherror(Exception e) {
         e.printStackTrace();
         return Result.fail();
     }
