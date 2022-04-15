@@ -14,8 +14,14 @@ public final class HttpUtil {
 
 	static final String POST = "POST";
 	static final String GET = "GET";
-	static final int CONN_TIMEOUT = 30000;// ms
-	static final int READ_TIMEOUT = 30000;// ms
+	/**
+	 * ms
+	 */
+	static final int CONN_TIMEOUT = 30000;
+	/**
+	 * ms
+	 */
+	static final int READ_TIMEOUT = 30000;
 
 	/**
 	 * post 方式发送http请求.

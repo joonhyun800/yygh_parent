@@ -32,7 +32,6 @@ public class ApiController extends BaseController {
 	private ApiService apiService;
 
 	@Autowired
-	@Qualifier("hospitalSetMapper")
 	private HospitalSetMapper hospitalSetMapper;
 
 	@RequestMapping("/hospitalSet/index")
