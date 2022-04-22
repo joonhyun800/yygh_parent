@@ -11,11 +11,12 @@ import com.wjh.yygh.vo.hosp.HospitalSetQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
+
 
 @Api(tags = {"后台医院设置"})
 @RestController
@@ -102,22 +103,15 @@ public class HospitalSetController {
 
     /**
      * 4 添加医院设置
-     *
      * @param hospitalSet
      * @return
      */
     @ApiOperation(value = "4 添加医院设置")
+    @Transactional
     @PostMapping("/saveHospitalSet")
     public Result saveHospitalSet(@RequestBody HospitalSet hospitalSet) {
-        //设置状态 1 使用 0 不能使用
-        hospitalSet.setStatus(1);
-        //签名秘钥
-        String encrypt = MD5.encrypt(System.currentTimeMillis() + "" + new Random().nextInt(1000));
-        hospitalSet.setSignKey(encrypt);
-        //调用service
-
-        boolean save = hospitalSetService.save(hospitalSet);
-        if (save) {
+        Integer integer = hospitalSetService.saveHospitalSet(hospitalSet);
+        if (integer>0) {
             return Result.ok();
         } else {
             return Result.fail();
@@ -133,7 +127,6 @@ public class HospitalSetController {
     @ApiOperation(value = "5 根据id获取医院设置")
     @GetMapping("/getHospSet/{id}")
     public Result getHospSet(@PathVariable Long id) {
-
         HospitalSet hospitalSet = hospitalSetService.getById(id);
         return Result.ok(hospitalSet);
     }

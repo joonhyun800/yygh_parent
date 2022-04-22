@@ -1,5 +1,6 @@
 package com.wjh.yygh.model.hosp;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.wjh.yygh.model.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

@@ -2,9 +2,11 @@ package com.wjh.yygh.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.oracle.webservices.internal.api.message.PropertySet;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -21,6 +23,7 @@ public class MybatisPlusConfig {
      * 分页插件
      */
     @Bean
+    @Scope("prototype")
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         /**

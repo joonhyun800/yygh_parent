@@ -1,5 +1,6 @@
 package com.wjh.yygh;
 
+import com.wjh.yygh.utils.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 @SpringBootTest
@@ -30,6 +32,15 @@ public class DataSourceTest {
 
         hashMap.entrySet();
 
+    }
+
+    /**
+     * 签名测试
+     */
+    @Test
+    public void testkey(){
+        String encrypt = MD5.encrypt(System.currentTimeMillis() + "" + new Random().nextInt(1000));
+        System.out.println(encrypt);
     }
 
 }
