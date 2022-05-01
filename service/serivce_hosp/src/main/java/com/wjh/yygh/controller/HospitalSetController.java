@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wjh.yygh.common.result.Result;
 import com.wjh.yygh.model.hosp.HospitalSet;
 import com.wjh.yygh.service.HospitalSetService;
-import com.wjh.yygh.utils.MD5;
 import com.wjh.yygh.vo.hosp.HospitalSetQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
