@@ -11,16 +11,17 @@
         <module name="common_util" />
         <module name="service_util" />
         <module name="model" />
+        <module name="hospital-manage" />
         <module name="yygh_gateway" />
         <module name="service_user" />
         <module name="service_cmn" />
-        <module name="hosp_manage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="common_util" target="1.8" />
       <module name="hosp_manage" target="1.8" />
+      <module name="hospital-manage" target="1.8" />
       <module name="model" target="1.8" />
       <module name="serivce_hosp" target="1.8" />
       <module name="service" target="1.8" />
@@ -35,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common_util" options="-parameters" />
       <module name="hosp_manage" options="-parameters" />
+      <module name="hospital-manage" options="-parameters" />
       <module name="model" options="-parameters" />
       <module name="serivce_hosp" options="-parameters" />
       <module name="service_cmn" options="-parameters" />

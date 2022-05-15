@@ -6,6 +6,8 @@ target/
 mvnw
 hospital-manage.iml
 .mvn/
+mvnw.cmd
+
 ### STS ###
 .apt_generated
 .classpath
