@@ -19,6 +19,13 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
+        <dependency>
+            <artifactId>service_cmn_client</artifactId>
+            <groupId>com.wjh</groupId>
+            <version>1.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

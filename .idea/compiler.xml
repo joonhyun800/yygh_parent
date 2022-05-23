@@ -8,12 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="serivce_hosp" />
-        <module name="common_util" />
+        <module name="service_cmn_client" />
         <module name="service_util" />
         <module name="model" />
         <module name="hospital-manage" />
-        <module name="yygh_gateway" />
         <module name="service_user" />
+        <module name="yygh_gateway" />
+        <module name="common_util" />
         <module name="service_cmn" />
       </profile>
     </annotationProcessing>
@@ -25,7 +26,9 @@
       <module name="model" target="1.8" />
       <module name="serivce_hosp" target="1.8" />
       <module name="service" target="1.8" />
+      <module name="service_client" target="1.8" />
       <module name="service_cmn" target="1.8" />
+      <module name="service_cmn_client" target="1.8" />
       <module name="service_user" target="1.8" />
       <module name="service_util" target="1.8" />
       <module name="yygh_gateway" target="1.8" />
@@ -39,7 +42,9 @@
       <module name="hospital-manage" options="-parameters" />
       <module name="model" options="-parameters" />
       <module name="serivce_hosp" options="-parameters" />
+      <module name="service_client" options="-parameters" />
       <module name="service_cmn" options="-parameters" />
+      <module name="service_cmn_client" options="-parameters" />
       <module name="service_user" options="-parameters" />
       <module name="service_util" options="-parameters" />
       <module name="yygh_gateway" options="-parameters" />

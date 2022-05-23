@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,10 +37,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
      * @Cacheable 生成缓存
      */
     @Override
-    @Cacheable(value = "dict",keyGenerator = "keyGenerator")
+    @Cacheable(value = "dict", keyGenerator = "keyGenerator")
     public List<Dict> findChildData(Long id) {
         QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("parent_id",id);
+        queryWrapper.eq("parent_id", id);
         List<Dict> dicts = baseMapper.selectList(queryWrapper);
         for (Dict dict : dicts) {
             Long dictId = dict.getId();
@@ -50,10 +52,9 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     /**
      * 导出所有数据字典
-     * @param response
-     * Content-dixposition 以下载方式
-     * response.setContentType 设置下载信息
      *
+     * @param response Content-dixposition 以下载方式
+     *                 response.setContentType 设置下载信息
      */
     @Override
     public void exportData(HttpServletResponse response) {
@@ -70,10 +71,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         try {
             fileName = URLEncoder.encode("数据字典.xlsx", "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            fileName="dict";
+            fileName = "dict";
             e.printStackTrace();
         }
-        response.setHeader("Content-disposition","attachment;filename"+fileName+".xlsx");
+        response.setHeader("Content-disposition", "attachment;filename" + fileName + ".xlsx");
 
 
         List<Dict> dictList = baseMapper.selectList(null);
@@ -86,7 +87,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
              * 对象拷贝 Dict => DictEeVo
              * dictEeVo.setId(dict.getId())
              */
-            BeanUtils.copyProperties(dict,dictEeVo);
+            BeanUtils.copyProperties(dict, dictEeVo);
             dictEeVoLinkedList.add(dictEeVo);
         }
         try {
@@ -100,14 +101,14 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     /**
      * 导入数据字典
-     * @param file
-     * allEntries = true: 方法调用后清空所有缓存
+     *
+     * @param file allEntries = true: 方法调用后清空所有缓存
      */
     @Override
-    @CacheEvict(value = "dict",allEntries = true)
+    @CacheEvict(value = "dict", allEntries = true)
     public void importDictData(MultipartFile file) {
         try {
-            EasyExcel.read(file.getInputStream(),DictEeVo.class, new DictListerner(baseMapper))
+            EasyExcel.read(file.getInputStream(), DictEeVo.class, new DictListerner(baseMapper))
                     .sheet().doRead();
         } catch (IOException e) {
             e.printStackTrace();
@@ -115,15 +116,67 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     }
 
     /**
+     * 查询等级
+     * @param dictCode
+     * @param value
+     * @return
+     */
+    @Override
+    public String getDictName(String dictCode, String value) {
+
+        QueryWrapper<Dict> dictQueryWrapper = new QueryWrapper<>();
+        if (StringUtils.isEmpty(dictCode)) {
+            dictQueryWrapper.eq("value", value);
+            Dict dict = baseMapper.selectOne(dictQueryWrapper);
+            return dict.getName();
+        } else {
+            QueryWrapper<Dict> Wrapper = new QueryWrapper<>();
+            Wrapper.eq("dict_code",dictCode);
+            Dict codeDict = baseMapper.selectOne(Wrapper);
+            Long parentId = codeDict.getId();
+            Dict dict = baseMapper.selectOne(new QueryWrapper<Dict>().eq("parent_id", parentId)
+                    .eq("value", value));
+            return dict.getName();
+        }
+
+    }
+
+    /**
      * 判断是否有子节点
      * @param id
      * @return
      */
-    private boolean isChildren(Long id){
+    private boolean isChildren(Long id) {
         QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("parent_id",id);
+        queryWrapper.eq("parent_id", id);
         Integer count = baseMapper.selectCount(queryWrapper);
-        return count>0;
+        return count > 0;
     }
+
+    /**
+     *  根据dictCode 获取id
+     * @param dictCode
+     * @return
+     */
+    private Dict getDictByCode(String dictCode){
+        QueryWrapper<Dict> dictQueryWrapper = new QueryWrapper<>();
+        dictQueryWrapper.eq("dict_code",dictCode);
+       return baseMapper.selectOne(dictQueryWrapper);
+    }
+
+    /**
+     * 根据dictCode 获取id
+     * @param dictCode
+     * @return
+     */
+    @Override
+    public List<Dict> findByDictCode(String dictCode) {
+        Dict dictByCode = this.getDictByCode(dictCode);
+        List<Dict> childData = this.findChildData(dictByCode.getId());
+        return childData;
+    }
+
+
+
 
 }

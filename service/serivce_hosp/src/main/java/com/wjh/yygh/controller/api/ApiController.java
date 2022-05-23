@@ -94,9 +94,9 @@ public class ApiController {
         logoData = logoData.replaceAll(" ", "+");
         paramMap.put("logoData", logoData);
 
-        if (!signKey.equals(SignKeyMd5)) { //签名不一致
-            throw new YyghException(ResultCodeEnum.SIGN_ERROR);
-        }
+//        if (!signKey.equals(SignKeyMd5)) { //签名不一致
+//            throw new YyghException(ResultCodeEnum.SIGN_ERROR);
+//        }
         hospitalService.save(paramMap);
 
         return Result.ok();
@@ -118,13 +118,11 @@ public class ApiController {
         String SignKeyMd5 = MD5.encrypt(sign);//传过来的key镜像md5加密
         String signKey = hospitalSetService.getSignKey(hoscode);
 
-        if (!SignKeyMd5.equals(signKey)) {
-            throw new YyghException(ResultCodeEnum.SIGN_ERROR);
-        }
+//        if (!SignKeyMd5.equals(signKey)) {
+//            throw new YyghException(ResultCodeEnum.SIGN_ERROR);
+//        }
             deparentmentService.save(paramMap);
             return Result.ok();
-
-
 
     }
 
