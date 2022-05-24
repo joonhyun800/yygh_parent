@@ -1,0 +1,46 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea/
+*.iml
+out
+gen
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+target/
+
+将删除 .gitignore
+将删除 common/common_util/target/generated-sources/
+将删除 common/service_util/target/generated-sources/
+将删除 model/target/generated-sources/
+将删除 service/serivce_hosp/target/generated-sources/
+将删除 service/serivce_hosp/target/generated-test-sources/
+将删除 service/service_cmn/target/generated-sources/
+将删除 service/service_cmn/target/generated-test-sources/
+将删除 service_client/service_cmn_client/src/test/
+将删除 service_client/service_cmn_client/target/generated-sources/
+将删除 yygh_gateway/target/generated-sources/
