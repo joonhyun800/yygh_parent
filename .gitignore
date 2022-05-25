@@ -8,8 +8,6 @@ hospital-manage.iml
 .mvn/
 mvnw.cmd
 *.iml
-mvnw/
-mvnw.cmd/
 
 ### STS ###
 .apt_generated
