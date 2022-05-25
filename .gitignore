@@ -32,8 +32,7 @@ gen
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 target/
-
-将删除 .gitignore
+.gitignore
 将删除 common/common_util/target/generated-sources/
 将删除 common/service_util/target/generated-sources/
 将删除 model/target/generated-sources/
