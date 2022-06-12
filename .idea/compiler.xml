@@ -8,13 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="serivce_hosp" />
-        <module name="service_cmn_client" />
+        <module name="common_util" />
         <module name="service_util" />
         <module name="model" />
         <module name="hospital-manage" />
-        <module name="service_user" />
+        <module name="service_cmn_client" />
         <module name="yygh_gateway" />
-        <module name="common_util" />
+        <module name="service_user" />
         <module name="service_cmn" />
       </profile>
     </annotationProcessing>
