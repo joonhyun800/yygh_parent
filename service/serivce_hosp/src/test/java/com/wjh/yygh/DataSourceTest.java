@@ -22,7 +22,11 @@ public class DataSourceTest {
 
     @Test
     public void datasourcetest() throws SQLException {
-        System.out.println(dataSource.getConnection());
+
+        int i = new Random(100).nextInt();
+        System.out.println(i);
+
+//        System.out.println(dataSource.getConnection());
     }
 
     @Test
@@ -42,5 +46,7 @@ public class DataSourceTest {
         String encrypt = MD5.encrypt(System.currentTimeMillis() + "" + new Random().nextInt(1000));
         System.out.println(encrypt);
     }
+
+
 
 }
