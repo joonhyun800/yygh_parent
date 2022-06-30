@@ -58,7 +58,6 @@ public class DictController {
         return Result.ok(childData);
     }
 
-
     /**
      * 根据dictCode 和 value 查询
      * @param dictCode

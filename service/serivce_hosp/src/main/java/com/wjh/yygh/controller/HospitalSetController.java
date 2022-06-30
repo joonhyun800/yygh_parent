@@ -28,7 +28,6 @@ public class HospitalSetController {
     @Autowired
     private HospitalSetService hospitalSetService;
 
-
     /**
      * 1.查询医院设置表所有信息
      *
